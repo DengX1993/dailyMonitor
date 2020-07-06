@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cn.computer.dao.mapper.ServerInfoMapper">
+    <resultMap id="BaseResultMap" type="com.cn.computer.dao.model.ServerInfo">
+        <id column="UUID" property="uuid" jdbcType="VARCHAR"/>
+        <result column="SERVER_IP" property="serverIp" jdbcType="VARCHAR"/>
+        <result column="DEPLOYMENT_TYPE" property="deploymentType" jdbcType="INTEGER"/>
+        <result column="SSH_PORT" property="sshPort" jdbcType="INTEGER"/>
+        <result column="LOGIN_NAME" property="loginName" jdbcType="VARCHAR"/>
+        <result column="LOGIN_PASSWORD" property="loginPassword" jdbcType="VARCHAR"/>
+        <result column="REMARK" property="remark" jdbcType="VARCHAR"/>
+        <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="UPD_TIME" property="updTime" jdbcType="TIMESTAMP"/>
+        <result column="DEL_FLAG" property="delFlag" jdbcType="INTEGER"/>
+        <result column="OPEN_FLAG" property="openFlag" jdbcType="INTEGER"/>
+        <result column="CREATE_ID" property="createId" jdbcType="VARCHAR"/>
+        <result column="UPD_ID" property="updId" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    UUID, SERVER_IP, DEPLOYMENT_TYPE, SSH_PORT, LOGIN_NAME, LOGIN_PASSWORD, REMARK,
+    CREATE_TIME, UPD_TIME, DEL_FLAG, OPEN_FLAG, CREATE_ID, UPD_ID
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from SERVER_INFO
+        where UUID = #{uuid,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from SERVER_INFO
+    where UUID = #{uuid,jdbcType=VARCHAR}
+  </delete>
+
+    <insert id="insert" parameterType="com.cn.computer.dao.model.ServerInfo">
+    insert into SERVER_INFO (UUID, SERVER_IP, DEPLOYMENT_TYPE, 
+      SSH_PORT, LOGIN_NAME, LOGIN_PASSWORD, 
+      REMARK,  CREATE_TIME, 
+      UPD_TIME, DEL_FLAG, OPEN_FLAG, 
+      CREATE_ID, UPD_ID)
+    values (#{uuid,jdbcType=VARCHAR}, #{serverIp,jdbcType=VARCHAR}, #{deploymentType,jdbcType=INTEGER}, 
+      #{sshPort,jdbcType=INTEGER}, #{loginName,jdbcType=VARCHAR}, #{loginPassword,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP},
+      #{updTime,jdbcType=TIMESTAMP}, #{delFlag,jdbcType=INTEGER}, #{openFlag,jdbcType=INTEGER}, 
+      #{createId,jdbcType=VARCHAR}, #{updId,jdbcType=VARCHAR})
+  </insert>
+    <insert id="insertSelective" parameterType="com.cn.computer.dao.model.ServerInfo">
+        insert into SERVER_INFO
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="uuid != null">
+                UUID,
+            </if>
+            <if test="serverIp != null">
+                SERVER_IP,
+            </if>
+            <if test="deploymentType != null">
+                DEPLOYMENT_TYPE,
+            </if>
+            <if test="sshPort != null">
+                SSH_PORT,
+            </if>
+            <if test="loginName != null">
+                LOGIN_NAME,
+            </if>
+            <if test="loginPassword != null">
+                LOGIN_PASSWORD,
+            </if>
+            <if test="remark != null">
+                REMARK,
+            </if>
+            <if test="createTime != null">
+                CREATE_TIME,
+            </if>
+            <if test="updTime != null">
+                UPD_TIME,
+            </if>
+            <if test="delFlag != null">
+                DEL_FLAG,
+            </if>
+            <if test="openFlag != null">
+                OPEN_FLAG,
+            </if>
+            <if test="createId != null">
+                CREATE_ID,
+            </if>
+            <if test="updId != null">
+                UPD_ID,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="uuid != null">
+                #{uuid,jdbcType=VARCHAR},
+            </if>
+            <if test="serverIp != null">
+                #{serverIp,jdbcType=VARCHAR},
+            </if>
+            <if test="deploymentType != null">
+                #{deploymentType,jdbcType=INTEGER},
+            </if>
+            <if test="sshPort != null">
+                #{sshPort,jdbcType=INTEGER},
+            </if>
+            <if test="loginName != null">
+                #{loginName,jdbcType=VARCHAR},
+            </if>
+            <if test="loginPassword != null">
+                #{loginPassword,jdbcType=VARCHAR},
+            </if>
+            <if test="remark != null">
+                #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updTime != null">
+                #{updTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="delFlag != null">
+                #{delFlag,jdbcType=INTEGER},
+            </if>
+            <if test="openFlag != null">
+                #{openFlag,jdbcType=INTEGER},
+            </if>
+            <if test="createId != null">
+                #{createId,jdbcType=VARCHAR},
+            </if>
+            <if test="updId != null">
+                #{updId,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.cn.computer.dao.model.ServerInfo">
+        update SERVER_INFO
+        <set>
+            <if test="serverIp != null">
+                SERVER_IP = #{serverIp,jdbcType=VARCHAR},
+            </if>
+            <if test="deploymentType != null">
+                DEPLOYMENT_TYPE = #{deploymentType,jdbcType=INTEGER},
+            </if>
+            <if test="sshPort != null">
+                SSH_PORT = #{sshPort,jdbcType=INTEGER},
+            </if>
+            <if test="loginName != null">
+                LOGIN_NAME = #{loginName,jdbcType=VARCHAR},
+            </if>
+            <if test="loginPassword != null">
+                LOGIN_PASSWORD = #{loginPassword,jdbcType=VARCHAR},
+            </if>
+            <if test="remark != null">
+                REMARK = #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updTime != null">
+                UPD_TIME = #{updTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="delFlag != null">
+                DEL_FLAG = #{delFlag,jdbcType=INTEGER},
+            </if>
+            <if test="openFlag != null">
+                OPEN_FLAG = #{openFlag,jdbcType=INTEGER},
+            </if>
+            <if test="createId != null">
+                CREATE_ID = #{createId,jdbcType=VARCHAR},
+            </if>
+            <if test="updId != null">
+                UPD_ID = #{updId,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where UUID = #{uuid,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.cn.computer.dao.model.ServerInfo">
+    update SERVER_INFO
+    set SERVER_IP = #{serverIp,jdbcType=VARCHAR},
+      DEPLOYMENT_TYPE = #{deploymentType,jdbcType=INTEGER},
+      SSH_PORT = #{sshPort,jdbcType=INTEGER},
+      LOGIN_NAME = #{loginName,jdbcType=VARCHAR},
+      LOGIN_PASSWORD = #{loginPassword,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPD_TIME = #{updTime,jdbcType=TIMESTAMP},
+      DEL_FLAG = #{delFlag,jdbcType=INTEGER},
+      OPEN_FLAG = #{openFlag,jdbcType=INTEGER},
+      CREATE_ID = #{createId,jdbcType=VARCHAR},
+      UPD_ID = #{updId,jdbcType=VARCHAR}
+    where UUID = #{uuid,jdbcType=VARCHAR}
+  </update>
+
+
+
+   <!--根据ip 查询对象-->
+    <select id="selectServerInfoByIp" resultType="com.cn.computer.dao.model.ServerInfo" parameterType="java.lang.String">
+        select
+        *
+        from SERVER_INFO
+        where SERVER_IP = #{serverIp,jdbcType=VARCHAR}
+    </select>
+
+</mapper>
